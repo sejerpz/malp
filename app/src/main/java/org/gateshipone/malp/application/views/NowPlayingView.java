@@ -34,15 +34,18 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.content.res.AppCompatResources;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Menu;
@@ -1076,7 +1079,9 @@ public class NowPlayingView extends RelativeLayout implements PopupMenu.OnMenuIt
                 }
 
                 // tint the button
-                mTopPlaylistButton.setImageTintList(ColorStateList.valueOf(color));
+                if (Build.VERSION.SDK_INT >= 21) {
+                    mTopPlaylistButton.setImageTintList(ColorStateList.valueOf(color));
+                }
 
                 // toggle between cover and playlistview
                 mViewSwitcher.showNext();
@@ -1359,21 +1364,44 @@ public class NowPlayingView extends RelativeLayout implements PopupMenu.OnMenuIt
         switch (status.getRepeat()) {
             case 0:
                 mBottomRepeatButton.setImageResource(R.drawable.ic_repeat_24dp);
-                mBottomRepeatButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
+                if (Build.VERSION.SDK_INT >= 21) {
+                    mBottomRepeatButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
+                }
                 break;
             case 1:
-                mBottomRepeatButton.setImageResource(R.drawable.ic_repeat_24dp);
-                mBottomRepeatButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), android.R.attr.colorAccent)));
+                if (Build.VERSION.SDK_INT >= 21) {
+                    mBottomRepeatButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), android.R.attr.colorAccent)));
+                }
                 break;
         }
 
         // update random button
         switch (status.getRandom()) {
             case 0:
-                mBottomRandomButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
+                if (Build.VERSION.SDK_INT >= 21)
+                    mBottomRandomButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
+                else
+                {
+                    /*
+                    ColorStateList csl = AppCompatResources.getColorStateList(getContext(), ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent));
+                    Drawable drawable = DrawableCompat.wrap(mBottomRandomButton.getDrawable());
+                    DrawableCompat.setTintList(drawable, csl);
+                    mBottomRandomButton.setImageDrawable(drawable);
+                    */
+                }
                 break;
             case 1:
-                mBottomRandomButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), android.R.attr.colorAccent)));
+                if (Build.VERSION.SDK_INT >= 21)
+                    mBottomRandomButton.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), android.R.attr.colorAccent)));
+                else
+                {
+                    /*
+                    ColorStateList csl = AppCompatResources.getColorStateList(getContext(), ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent));
+                    Drawable drawable = DrawableCompat.wrap(mBottomRandomButton.getDrawable());
+                    DrawableCompat.setTintList(drawable, csl);
+                    mBottomRandomButton.setImageDrawable(drawable);
+                    */
+                }
                 break;
         }
 
@@ -1401,8 +1429,11 @@ public class NowPlayingView extends RelativeLayout implements PopupMenu.OnMenuIt
             mVolumeIcon.setImageResource(R.drawable.ic_volume_mute_black_48dp);
             mVolumeIconButtons.setImageResource(R.drawable.ic_volume_mute_black_48dp);
         }
-        mVolumeIcon.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
-        mVolumeIconButtons.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            mVolumeIcon.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
+            mVolumeIconButtons.setImageTintList(ColorStateList.valueOf(ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent)));
+        }
 
         mVolumeText.setText(String.valueOf(volume) + '%');
 
@@ -1453,7 +1484,7 @@ public class NowPlayingView extends RelativeLayout implements PopupMenu.OnMenuIt
             // get tint color
             int tintColor = ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_background_primary);
 
-            Drawable drawable = getResources().getDrawable(R.drawable.cover_placeholder, null);
+            Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.cover_placeholder, null);
             drawable = DrawableCompat.wrap(drawable);
             DrawableCompat.setTint(drawable, tintColor);
 
@@ -1462,7 +1493,7 @@ public class NowPlayingView extends RelativeLayout implements PopupMenu.OnMenuIt
 
             tintColor = ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_accent);
 
-            drawable = getResources().getDrawable(R.drawable.cover_placeholder_128dp, null);
+            drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.cover_placeholder_128dp, null);
             drawable = DrawableCompat.wrap(drawable);
             DrawableCompat.setTint(drawable, tintColor);
 

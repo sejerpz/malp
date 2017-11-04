@@ -31,6 +31,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
@@ -88,14 +89,14 @@ public class MyMusicTabsFragment extends Fragment implements TabLayout.OnTabSele
 
         // Icons
         final ColorStateList tabColors = tabLayout.getTabTextColors();
-        Resources res = getResources();
-        Drawable drawable = res.getDrawable(R.drawable.ic_recent_actors_24dp, null);
+        //Resources res = getResources();
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_recent_actors_24dp, null); //res.getDrawable(R.drawable.ic_recent_actors_24dp, null);
         if (drawable != null) {
             Drawable icon = DrawableCompat.wrap(drawable);
             DrawableCompat.setTintList(icon, tabColors);
             tabLayout.addTab(tabLayout.newTab().setIcon(icon));
         }
-        drawable = res.getDrawable(R.drawable.ic_album_24dp, null);
+        drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_album_24dp, null); //res.getDrawable(R.drawable.ic_album_24dp, null);
         if (drawable != null) {
             Drawable icon = DrawableCompat.wrap(drawable);
             DrawableCompat.setTintList(icon, tabColors);

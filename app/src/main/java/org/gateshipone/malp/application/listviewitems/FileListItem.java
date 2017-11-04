@@ -24,7 +24,10 @@ package org.gateshipone.malp.application.listviewitems;
 
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -175,7 +178,7 @@ public class FileListItem extends AbsImageListViewItem {
         setTrack(track, context);
 
         if (showIcon) {
-            Drawable icon = context.getDrawable(R.drawable.ic_file_48dp);
+            Drawable icon = ContextCompat.getDrawable(context, R.drawable.ic_file_48dp);
             if (icon != null) {
                 // get tint color
                 int tintColor = ThemeUtils.getThemeColor(context, android.R.attr.textColor);
@@ -201,7 +204,7 @@ public class FileListItem extends AbsImageListViewItem {
         setTrack(file, context);
 
         if (showIcon) {
-            Drawable icon = context.getDrawable(R.drawable.ic_file_48dp);
+            Drawable icon = ContextCompat.getDrawable(context, R.drawable.ic_file_48dp);
 
             if (icon != null) {
                 // get tint color
@@ -350,7 +353,7 @@ public class FileListItem extends AbsImageListViewItem {
         }
 
         if (mShowIcon) {
-            Drawable icon = context.getDrawable(R.drawable.ic_file_48dp);
+            Drawable icon = ContextCompat.getDrawable(context, R.drawable.ic_file_48dp); //context.getDrawable(R.drawable.);
 
             if (icon != null) {
                 // get tint color
@@ -374,7 +377,7 @@ public class FileListItem extends AbsImageListViewItem {
         mAdditionalInfoView.setText(directory.getLastModifiedString());
 
         if (mShowIcon) {
-            Drawable icon = context.getDrawable(R.drawable.ic_folder_48dp);
+            Drawable icon = ContextCompat.getDrawable(context, R.drawable.ic_folder_48dp);
 
             if (icon != null) {
                 // get tint color
@@ -396,7 +399,7 @@ public class FileListItem extends AbsImageListViewItem {
         mAdditionalInfoView.setText(playlist.getLastModifiedString());
 
         if (mShowIcon) {
-            Drawable icon = context.getDrawable(R.drawable.ic_queue_music_black_48dp);
+            Drawable icon = ContextCompat.getDrawable(context, R.drawable.ic_queue_music_black_48dp);
 
             if (icon != null) {
                 // get tint color

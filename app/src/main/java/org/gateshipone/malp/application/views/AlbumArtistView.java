@@ -26,6 +26,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -176,7 +178,7 @@ public class AlbumArtistView extends ViewSwitcher {
         // get tint color
         int tintColor = ThemeUtils.getThemeColor(getContext(), R.attr.malp_color_text_background_primary);
 
-        Drawable drawable = getResources().getDrawable(R.drawable.cover_placeholder, null);
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.cover_placeholder, null); //getResources().getDrawable(R.drawable.cover_placeholder, null);
         drawable = DrawableCompat.wrap(drawable);
         DrawableCompat.setTint(drawable, tintColor);
 

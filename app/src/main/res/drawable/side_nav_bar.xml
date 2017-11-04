@@ -24,7 +24,5 @@
     android:shape="rectangle">
     <gradient
         android:angle="135"
-        android:endColor="?attr/malp_color_primary"
-        android:startColor="?attr/malp_color_primary_dark"
         android:type="linear" />
 </shape>

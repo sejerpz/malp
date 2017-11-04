@@ -32,6 +32,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
@@ -71,13 +72,13 @@ public class ServerPropertiesFragment extends Fragment implements TabLayout.OnTa
         // Icons
         final ColorStateList tabColors = tabLayout.getTabTextColors();
         Resources res = getResources();
-        Drawable drawable = res.getDrawable(R.drawable.ic_statistics_black_24dp, null);
+        Drawable drawable = ResourcesCompat.getDrawable(res, R.drawable.ic_statistics_black_24dp, null);
         if (drawable != null) {
             Drawable icon = DrawableCompat.wrap(drawable);
             DrawableCompat.setTintList(icon, tabColors);
             tabLayout.addTab(tabLayout.newTab().setIcon(icon));
         }
-        drawable = res.getDrawable(R.drawable.ic_hearing_black_24dp, null);
+        drawable = ResourcesCompat.getDrawable(res, R.drawable.ic_hearing_black_24dp, null);
         if (drawable != null) {
             Drawable icon = DrawableCompat.wrap(drawable);
             DrawableCompat.setTintList(icon, tabColors);

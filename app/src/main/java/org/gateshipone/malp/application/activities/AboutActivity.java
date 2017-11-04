@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -42,8 +43,9 @@ public class AboutActivity extends GenericActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        getWindow().setStatusBarColor(ThemeUtils.getThemeColor(this,R.attr.malp_color_primary_dark));
-
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(ThemeUtils.getThemeColor(this, R.attr.malp_color_primary_dark));
+        }
 
         String versionName = "";
         // get version from manifest

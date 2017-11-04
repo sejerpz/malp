@@ -23,6 +23,7 @@
 package org.gateshipone.malp.application.activities;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -46,7 +47,9 @@ public class ContributorsActivity extends GenericActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contributors);
 
-        getWindow().setStatusBarColor(ThemeUtils.getThemeColor(this, R.attr.malp_color_primary_dark));
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(ThemeUtils.getThemeColor(this, R.attr.malp_color_primary_dark));
+        }
 
         ListView contributors = (ListView) findViewById(R.id.contributors_listview);
 
